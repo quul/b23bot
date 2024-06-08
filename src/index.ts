@@ -26,10 +26,10 @@ export default {
 		}
 
 		const regexAVID = /([Aa][Vv]\d+)/g
-		const regexBVID = /([Bb][Vv]1[0-9A-Za-z]{8})/g
-		const regexB23TV = /(?:https?:\/\/)?(?:www\.)?b23\.tv\/(BV1[0-9A-Za-z]{8}|[Aa][Vv]\d+|[0-9A-Za-z]+)\/?/
-		const regexB23WTF = /(?:https?:\/\/)?(?:www\.)?b23\.w?tf\/(BV1[0-9A-Za-z]{8}|[Aa][Vv]\d+|[0-9A-Za-z]+)\/?/
-		const regexBilibiliCom = /(?:https?:\/\/)?(?:www\.)?bilibili\.com\/video\/(BV1[0-9A-Za-z]{8}|[Aa][Vv]\d+)\/?/
+		const regexBVID = /([Bb][Vv]1[0-9A-Za-z]{9})/g
+		const regexB23TV = /(?:https?:\/\/)?(?:www\.)?b23\.tv\/(BV1[0-9A-Za-z]{9}|[Aa][Vv]\d+|[0-9A-Za-z]+)\/?/
+		const regexB23WTF = /(?:https?:\/\/)?(?:www\.)?b23\.w?tf\/(BV1[0-9A-Za-z]{9}|[Aa][Vv]\d+|[0-9A-Za-z]+)\/?/
+		const regexBilibiliCom = /(?:https?:\/\/)?(?:www\.)?bilibili\.com\/video\/(BV1[0-9A-Za-z]{9}|[Aa][Vv]\d+)\/?/
 
 		// Proceed
 		let match: RegExpMatchArray | null
@@ -61,7 +61,7 @@ export default {
 					break
 				default:
 					await ctx.answerInlineQuery(
-						[dealWithURL(`https://b23.tf/${pattern}`)]
+						[dealWithURL(await handleB23WTF(`https://b23.tv/${pattern}`))]
 					)
 			}
 			return

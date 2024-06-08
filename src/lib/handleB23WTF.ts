@@ -1,6 +1,5 @@
 const handleB23WTF = async (url: string) => {
-	const req = fetch(url);
-	const resp = await fetch(url, { redirect: 'manual' });
+	const resp = await fetch(`https://b23.wtf/api?full=${encodeURI(url)}&status=200`);
 	const result = (await resp.text()).split('\r\n')[0];
 	return result;
 };
